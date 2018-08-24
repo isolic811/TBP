@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+
+{% if app.request.hasPreviousSession %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+<div>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
+</div>
+</body>
+<style>
+    /****** LOGIN ******/
+    .login-container {
+        /*padding: 30px;*/
+        max-width: 350px;
+        width: 100% !important;
+        background-color: white;
+        margin: 100px auto;
+        overflow: hidden;
+        font-family: Helvetica;
+    }
+    .login-container .login-credentials {
+        border-style: solid;
+        border-width: 5px;
+        border-color: #4d90fe;
+        border-radius: 14px;
+        height: 215px;
+        width: 100%;
+        padding-left: 10%;
+        padding-right: 10%;
+        position: relative;
+        background-color: white;
+    }
+    .login-container h1 {
+        text-align: center;
+        font-size: 1.8em;
+        font-family: Helvetica;
+    }
+    .login-container input[type=submit] {
+        width: 100%;
+        background-color: #db2e59;
+        text-transform: uppercase;
+        border-radius: 14px;
+        font-family: Helvetica;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 10px;
+        position: relative;
+        height: 44px;
+    }
+    .login-container input[type=text], input[type=password], input[type=email] {
+        font-weight: 100;
+        height: 44px;
+        font-size: 18px;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 0 8px;
+        background: white !important;
+        border: none;
+        cursor: pointer;
+        border-bottom: 1px solid #db2e59;
+        text-align: center;
+        margin-top: 10%;
+    }
+    .login-container input[type=text]:hover, input[type=password]:hover {
+    }
+    .login-container label {
+        font-size: 14px;
+        font-family: Helvetica;
+        font-weight: lighter;
+        color: #9B9B9B;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .login-submit {
+        /* border: 1px solid #3079ed; */
+        border: 0px;
+        color: #fff;
+        background-color: #4d90fe;
+        /*padding: 17px 0px;*/
+        font-family: Helvetica;
+        font-size: 13px;
+        /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+    }
+    .login-submit:hover {
+        /* border: 1px solid #2f5bb7; */
+        border: 0px;
+        /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+    }
+    /*.login-container a {*/
+    /*text-decoration: none;*/
+    /*color: #666;*/
+    /*font-weight: 400;*/
+    /*text-align: center;*/
+    /*display: inline-block;*/
+    /*opacity: 0.6;*/
+    /*transition: opacity ease 0.5s;*/
+    /*}*/
+    .login-help {
+        padding-top: 20px;
+        text-align: center;
+    }
+    .login-help > a {
+        font-size: 18px;
+        font-family: Helvetica;
+        font-weight: lighter;
+        color: #9B9B9B;
+    }
+    .login-page {
+        max-width: 500px;
+        overflow: hidden;
+        width: 100% !important;
+        margin: 100px auto;
+    }
+    .login-logo {
+        position: absolute;
+        display: block;
+        float: left;
+        margin-top: 150px;
+    }
+    .login-title {
+        margin-bottom: 60px;
+    }
+    .login-title > img {
+        display: block;
+        margin: auto;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+        transition: background-color 5000s ease-in-out 0s;
+    }
+</style>
+</html>

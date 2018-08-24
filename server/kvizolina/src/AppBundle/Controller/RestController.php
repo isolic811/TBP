@@ -19,11 +19,38 @@ class RestController extends FOSRestController
      */
     public function getQuestions()
     {
-        $result = $this->getDoctrine()->getRepository('AppBundle:Question')->findAll();
-        if ($result === null || count($result) === 0) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQueryBuilder()
+            ->select('q')
+            ->from('AppBundle:Question','q')
+            ->where('q.level = :type')
+            ->setParameter(":type", 1)
+            ->getQuery();
+        $result = $query->getResult();
+        shuffle($result);
+        $final=array_slice($result,0,4);
+        $query = $em->createQueryBuilder()
+            ->select('q')
+            ->from('AppBundle:Question','q')
+            ->where('q.level = :type')
+            ->setParameter(":type", 2)
+            ->getQuery();
+        $result = $query->getResult();
+        shuffle($result);
+        $final=array_merge($final,array_slice($result,0,3));
+        $query = $em->createQueryBuilder()
+            ->select('q')
+            ->from('AppBundle:Question','q')
+            ->where('q.level = :type')
+            ->setParameter(":type", 3)
+            ->getQuery();
+        $result = $query->getResult();
+        shuffle($result);
+        $final=array_merge($final,array_slice($result,0,3));
+        if ($final === null || count($final) === 0) {
             return new View("No questions found!", Response::HTTP_NOT_FOUND);
         }
-        return $result;
+        return $final;
     }
 
 	  /**
@@ -57,7 +84,7 @@ class RestController extends FOSRestController
 		$query = $em->createQuery(
 		'SELECT c FROM AppBundle:RangList c ORDER BY c.points DESC'
 		);
-		$result = $query->setMaxResults(20)->getResult();
+		$result = $query->setMaxResults(10)->getResult();
         if ($result === null || count($result) === 0) {
             return new View("No questions found!", Response::HTTP_NOT_FOUND);
         }
