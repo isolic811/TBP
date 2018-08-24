@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ranglist</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rangList.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ rangList.username }}</td>
+            </tr>
+            <tr>
+                <th>Timeupdated</th>
+                <td>{% if rangList.timeUpdated %}{{ rangList.timeUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Points</th>
+                <td>{{ rangList.points }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('admin_ranglist_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('admin_ranglist_edit', { 'id': rangList.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
