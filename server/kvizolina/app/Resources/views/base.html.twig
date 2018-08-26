@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -19,11 +19,15 @@
             </li>
 
             <li>
-                <a href="/poi">Manage</a>
+                <a href="/crud/question">Contribute</a>
+            </li>
+            <li>
+                <a href="/crud/ranglist">Rang List</a>
             </li>
             {% if is_granted('ROLE_ADMIN') %}
+
                 <li>
-                    <a href="/admin">Admin panel</a>
+                    <a href="/admin/level">Level</a>
                 </li>
             {%endif%}
             <li>

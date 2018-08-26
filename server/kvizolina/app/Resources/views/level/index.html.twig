@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Levels list</h1>
-
-    <table>
+    <h1 class="titleCruds">Levels list</h1>
+    <ul>
+        <li>
+            <a class="buttonsNew" href="{{ path('level_new') }}">Create a new level</a>
+        </li>
+    </ul>
+    <table class="manage-poi-list">
         <thead>
             <tr>
                 <th>Id</th>
@@ -18,9 +22,7 @@
                 <td>{{ level.name }}</td>
                 <td>
                     <ul>
-                        <li>
-                            <a href="{{ path('level_show', { 'id': level.id }) }}">show</a>
-                        </li>
+
                         <li>
                             <a href="{{ path('level_edit', { 'id': level.id }) }}">edit</a>
                         </li>
@@ -31,9 +33,5 @@
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('level_new') }}">Create a new level</a>
-        </li>
-    </ul>
+
 {% endblock %}

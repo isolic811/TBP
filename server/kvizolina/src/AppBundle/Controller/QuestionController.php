@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Question controller.
  *
- * @Route("question")
+ * @Route("crud/question")
  */
 class QuestionController extends Controller
 {
@@ -48,7 +48,7 @@ class QuestionController extends Controller
             $em->persist($question);
             $em->flush();
 
-            return $this->redirectToRoute('question_show', array('id' => $question->getId()));
+            return $this->redirectToRoute('question_index', array('id' => $question->getId()));
         }
 
         return $this->render('question/new.html.twig', array(

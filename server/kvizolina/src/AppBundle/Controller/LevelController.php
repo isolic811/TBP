@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Level controller.
  *
- * @Route("level")
+ * @Route("/admin/level")
  */
 class LevelController extends Controller
 {

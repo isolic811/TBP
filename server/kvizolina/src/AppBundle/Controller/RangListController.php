@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Ranglist controller.
  *
- * @Route("admin/ranglist")
+ * @Route("crud/ranglist")
  */
 class RangListController extends Controller
 {
@@ -22,9 +22,12 @@ class RangListController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT c FROM AppBundle:RangList c ORDER BY c.points DESC'
+        );
 
-        $rangLists = $em->getRepository('AppBundle:RangList')->findAll();
+        $rangLists = $query->getResult();
 
         return $this->render('ranglist/index.html.twig', array(
             'rangLists' => $rangLists,

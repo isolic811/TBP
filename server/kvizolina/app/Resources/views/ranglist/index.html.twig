@@ -1,43 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Ranglists list</h1>
+    <h1 class="titleCruds">Ranglist</h1>
 
-    <table>
+    <table class="manage-poi-list">
         <thead>
             <tr>
-                <th>Id</th>
+
                 <th>Username</th>
                 <th>Timeupdated</th>
                 <th>Points</th>
-                <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
         {% for rangList in rangLists %}
             <tr>
-                <td><a href="{{ path('admin_ranglist_show', { 'id': rangList.id }) }}">{{ rangList.id }}</a></td>
+
                 <td>{{ rangList.username }}</td>
                 <td>{% if rangList.timeUpdated %}{{ rangList.timeUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ rangList.points }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_ranglist_show', { 'id': rangList.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_ranglist_edit', { 'id': rangList.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_ranglist_new') }}">Create a new rangList</a>
-        </li>
-    </ul>
+
 {% endblock %}
